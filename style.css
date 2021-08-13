@@ -6,7 +6,6 @@ html {
 
 body {
   margin: 0;
-  min-height: 100vh;
   font-family: 'Ubuntu', sans-serif;
   background: whitesmoke;
 }
@@ -33,4 +32,25 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.image-container {
+  margin: 10px 20%;
+}
+
+.image-container img {
+  width: 100%;
+  margin-top: 5px;
+}
+
+
+/* Media Query: Larger Mobile */
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .image-container {
+    margin: 10px;
+  }
 }
