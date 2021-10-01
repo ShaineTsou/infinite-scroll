@@ -1,21 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
 
 html {
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Ubuntu', sans-serif;
-  background: whitesmoke;
+  font-family: "Dancing Script", cursive;
+  background-color: #1c1c1c;
 }
 
 h1 {
   text-align: center;
-  letter-spacing: 0.25rem;
+  letter-spacing: 0.2em;
   margin-top: 25px;
   margin-bottom: 15px;
-  font-size: 2.5rem;
+  font-size: 2.5em;
+  color: ivory;
 }
 
 .loader {
@@ -24,7 +25,7 @@ h1 {
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(28, 28, 28, 0.7);
 }
 
 .loader img {
@@ -40,14 +41,26 @@ h1 {
 
 .image-container img {
   width: 100%;
-  margin-top: 5px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px dimgray;
 }
 
-
-/* Media Query: Larger Mobile */
-@media screen and (max-width: 600px) {
+/* Media Query: Larger Tablet Portrait */
+@media screen and (max-width: 768px) {
   h1 {
-    font-size: 2rem;
+    font-size: 2em;
+  }
+
+  .image-container {
+    margin: 10px 5%;
+  }
+}
+
+/* Media Query: Mobile */
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.5em;
   }
 
   .image-container {
