@@ -1,11 +1,15 @@
 const imageContainer = document.querySelector("#image-container");
 const loader = document.querySelector("#loader");
 
+let loadingFinished = false;
+let loadedImagesCount = 0;
+let totalImages = 0;
+
 // Unsplash API
-const photoCount = 10;
+let numOfRequestImages = 5;
 const photoOrientation = "landscape";
 const apiKey = "your_access_key";
-const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${photoCount}&orientation=${photoOrientation}`;
+let apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${numOfRequestImages}&orientation=${photoOrientation}`;
 
 // Helper Function - set multiple attributes to an element
 const setAttributes = function (element, attributes) {
@@ -14,7 +18,27 @@ const setAttributes = function (element, attributes) {
   }
 };
 
+const isImageLoaded = function () {
+  loadedImagesCount++;
+
+  if (loadedImagesCount === totalImages) {
+    loadingFinished = true;
+
+    // Hide Loader when done image loading
+    loader.hidden = true;
+
+    // After initial load, increase count to 30, update apiUrl
+    numOfRequestImages = 30;
+    apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${numOfRequestImages}&orientation=${photoOrientation}`;
+  }
+};
+
 const displayPhotos = function (photos) {
+  totalImages = photos.length;
+
+  // When requesting more images, reset loadedImagesCount
+  loadedImagesCount = 0;
+
   photos.forEach((photo) => {
     const link = document.createElement("a");
     setAttributes(link, {
@@ -28,6 +52,7 @@ const displayPhotos = function (photos) {
       alt: `${photo.alt_description || photo.description}`,
       title: `${photo.alt_description || photo.description}`,
     });
+    img.addEventListener("load", isImageLoaded);
 
     link.appendChild(img);
     imageContainer.appendChild(link);
@@ -45,4 +70,17 @@ const getPhotos = async function () {
   }
 };
 
-getPhotos();
+// Load more photos when scroll to the point of 1000px above the bottom of page
+window.addEventListener("scroll", () => {
+  if (
+    window.innerHeight + window.pageYOffset >=
+      document.body.offsetHeight - 1000 &&
+    loadingFinished
+  ) {
+    loadingFinished = false;
+    getPhotos();
+  }
+});
+
+// On Load
+// getPhotos();
