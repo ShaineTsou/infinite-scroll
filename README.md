@@ -1,5 +1,5 @@
 # Infinite Scroll
-* Binge-scroll through beautiful pictures from [Unsplash](https://unsplash.com/) to kill time!
+* Infinite scroll implementation with [Unsplash](https://unsplash.com/) photos
 
 ## Features
 * Fetch a few photes before the user scroll to the bottom of the page
